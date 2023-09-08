@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "239556124814",
+    "firebase_url": "https://varsfit-default-rtdb.firebaseio.com",
+    "project_id": "varsfit",
+    "storage_bucket": "varsfit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239556124814:android:9b473a4dba64c9dfea29df",
+        "android_client_info": {
+          "package_name": "com.example.android.varsfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239556124814-2r2h7lt6slhtcs38r68ukon1hedspl6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.varsfit",
+            "certificate_hash": "52ab11789294f6f4c3cd45e84c3ea07702ef381b"
+          }
+        },
+        {
+          "client_id": "239556124814-lvlont2p06qtp681759tn0tlg39g5mec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX1hT9BOQy1mhi2Op30eVvjM3Dwvbioqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239556124814-lvlont2p06qtp681759tn0tlg39g5mec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239556124814:android:a329d9e6395b0378ea29df",
+        "android_client_info": {
+          "package_name": "com.frontend_react_native"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239556124814-lvlont2p06qtp681759tn0tlg39g5mec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX1hT9BOQy1mhi2Op30eVvjM3Dwvbioqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239556124814-lvlont2p06qtp681759tn0tlg39g5mec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
