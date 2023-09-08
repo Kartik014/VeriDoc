@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 10,
-        color:'black'
+        color: 'black'
     },
     modalImage: {
         height: 100,
@@ -89,6 +89,39 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         fontSize: 20
+    },
+    forms: {
+        scrollContainer: {
+            flexGrow: 1,
+            justifyContent: 'center',
+        },
+        formContainer: {
+            flex: 1,
+            padding: 20,
+        },
+        element: {
+            borderRadius: 5,
+            padding: 10,
+            backgroundColor: 'white',
+            elevation: 10,
+            shadowColor: 'black',
+            alignItems: 'center',
+            flexDirection: 'row',
+            margin: 10
+        },
+        elementText: {
+            margin: 5,
+            color: 'black',
+        },
+        elementButton: {
+            alignItems: 'center',
+            padding: 10,
+            borderRadius: 50,
+            elevation: 10,
+            shadowColor: 'black',
+            backgroundColor: '#FAF9F6',
+            width: 200
+        }
     }
 })
 
