@@ -1,16 +1,44 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import SelectDropdown from 'react-native-select-dropdown'
+import firestore from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth'
 import styles from '../Styles';
 
 const Forms = ({ navigation }) => {
 
+    const currentUser = auth().currentUser
     const [exerciseNo, setExerciseNo] = useState('')
     const [day, setDay] = useState('')
     const [exerciseInput, setExerciseInput] = useState([])
     const [diet, setDiet] = useState({ breakfast: '', lunch: '', dinner: '', snacks: '' })
     const [setsNo, setSetsNo] = useState('')
     const days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"]
+
+    const saveDataToFirestore = async () => {
+        try {
+            const collectionRef = firestore().collection('training_program').doc('training_programs')
+
+            const nestedMap = {
+                [currentUser.uid]: {
+                    exercise: {
+                        [day]: {
+                            Exercise: exerciseInput,
+                            Sets: setsNo,
+                            Diet: diet
+                        }
+                    }
+                }
+            }
+
+            await collectionRef.set(nestedMap, { merge: true })
+
+            navigation.navigate('Home')
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const generateExerciseInput = (exerciseNo) => {
         const inputs = []
@@ -64,8 +92,7 @@ const Forms = ({ navigation }) => {
                 <View style={styles.forms.element}>
                     <Text style={styles.forms.elementText}>TOTAL NUMBER OF EXERCISE: </Text>
                     <TextInput
-                        style={{ color: 'black' }}
-                        placeholder='TEXT'
+                        style={[{ color: 'black' },{ flex: 1 }]}
                         value={exerciseNo}
                         onChangeText={value => {
                             setExerciseNo(value)
@@ -82,8 +109,7 @@ const Forms = ({ navigation }) => {
                 <View style={styles.forms.element}>
                     <Text style={styles.forms.elementText}>TOTAL NUMBER OF SETS: </Text>
                     <TextInput
-                        style={{ color: 'black' }}
-                        placeholder='TEXT'
+                        style={[{ color: 'black' }, { flex: 1 }]}
                         value={setsNo}
                         onChangeText={value => setSetsNo(value)}
                         keyboardType='numeric'
@@ -122,7 +148,7 @@ const Forms = ({ navigation }) => {
                 </View>
                 <View style={{ alignItems: 'center', margin: 10 }}>
                     <TouchableOpacity style={styles.forms.elementButton}
-                        onPress={() => navigation.navigate('Home')}>
+                        onPress={saveDataToFirestore}>
                         <Text style={styles.forms.elementText}>SAVE</Text>
                     </TouchableOpacity>
                 </View>
