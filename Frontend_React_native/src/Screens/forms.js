@@ -10,20 +10,30 @@ const Forms = ({ navigation }) => {
     const currentUser = auth().currentUser
     const [exerciseNo, setExerciseNo] = useState('')
     const [day, setDay] = useState('')
-    const [exerciseInput, setExerciseInput] = useState([])
+    const [exerciseInput, setExerciseInput] = useState([''])
+    const [repsInput, setRepsInput] = useState([''])
     const [diet, setDiet] = useState({ breakfast: '', lunch: '', dinner: '', snacks: '' })
     const [setsNo, setSetsNo] = useState('')
     const days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"]
+
 
     const saveDataToFirestore = async () => {
         try {
             const collectionRef = firestore().collection('training_program').doc('training_programs')
 
+            const exercisesData = exerciseInput.map((exercise, index) => ({
+                exercise: exercise,
+                reps: repsInput[index] || ''
+              })).reduce((acc, item, index) => {
+                acc[`ex${index + 1}`] = item;
+                return acc;
+              }, {});
+
             const nestedMap = {
                 [currentUser.uid]: {
                     exercise: {
                         [day]: {
-                            Exercise: exerciseInput,
+                            Exercise: exercisesData,
                             Sets: setsNo,
                             Diet: diet
                         }
@@ -50,16 +60,41 @@ const Forms = ({ navigation }) => {
                     placeholder={`Exercise ${i + 1}`}
                     placeholderTextColor={'gray'}
                     value={exerciseInput[i] || ''}
-                    onChangeText={value => handleChange(value, i)} />
+                    onChangeText={value => handleChange(value, i)}
+                />
             )
         }
         return inputs;
     }
 
+    const generateRepsInput = (exerciseNo) => {
+        const repInput = []
+        for (let i = 0; i < exerciseNo; i++) {
+            repInput.push(
+                <View style={styles.forms.element}>
+                    <Text style={styles.forms.elementText}>Reps for {exerciseInput[i]}: </Text>
+                    <TextInput
+                        key={i}
+                        style={[styles.forms.elementText, { flex: 1 }]}
+                        value={repsInput[i] || ''}
+                        onChangeText={value => handleRepChange(value, i)}
+                    />
+                </View>
+            )
+        }
+        return repInput;
+    }
+
     const handleChange = (value, index) => {
-        const updateInput = { ...exerciseInput }
+        const updateInput = [ ...exerciseInput ]
         updateInput[index] = value
         setExerciseInput(updateInput)
+    }
+
+    const handleRepChange = (value, index) => {
+        const updateInput = [ ...repsInput ]
+        updateInput[index] = value
+        setRepsInput(updateInput)
     }
 
     const handleDietChange = (key, value) => {
@@ -70,6 +105,7 @@ const Forms = ({ navigation }) => {
     }
 
     const exerciseInputs = generateExerciseInput(exerciseNo)
+    const repsInputs = generateRepsInput(exerciseNo)
 
     return (
         <ScrollView contentContainerStyle={styles.forms.scrollContainer}>
@@ -92,17 +128,24 @@ const Forms = ({ navigation }) => {
                 <View style={styles.forms.element}>
                     <Text style={styles.forms.elementText}>TOTAL NUMBER OF EXERCISE: </Text>
                     <TextInput
-                        style={[{ color: 'black' },{ flex: 1 }]}
+                        style={[{ color: 'black' }, { flex: 1 }]}
                         value={exerciseNo}
                         onChangeText={value => {
                             setExerciseNo(value)
+                            setExerciseInput([])
                             setExerciseInput(Array.from({ length: parseInt(value, 10) }, () => ''))
+                            setRepsInput(Array.from({ length: parseInt(value, 10) }, () => ''))
                         }}
                         keyboardType='numeric'
                     />
                 </View>
                 {exerciseInputs.map((input, index) => (
                     <View key={index} style={styles.forms.element}>
+                        {input}
+                    </View>
+                ))}
+                {repsInputs.map((input, index) => (
+                    <View key={index}>
                         {input}
                     </View>
                 ))}
