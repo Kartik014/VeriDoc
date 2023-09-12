@@ -37,13 +37,14 @@ const Forms = ({ navigation }) => {
                             Sets: setsNo,
                             Diet: diet
                         }
-                    }
+                    },
+                    image:"https://firebasestorage.googleapis.com/v0/b/varsfit.appspot.com/o/images.jpeg?alt=media&token=745ae4a8-60f3-4728-aef1-b99467281ff7"
                 }
             }
 
             await collectionRef.set(nestedMap, { merge: true })
 
-            navigation.navigate('Home')
+            navigation.navigate('Tabs')
 
         } catch (err) {
             console.log(err)
