@@ -3,7 +3,7 @@ import MainNavigator from './src/Navigation/MainNavigator';
 
 const App = () => {
   return (
-    <MainNavigator/>
+    <MainNavigator />
   );
 };
 export default App;
