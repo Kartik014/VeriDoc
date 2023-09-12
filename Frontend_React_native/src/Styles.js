@@ -122,6 +122,18 @@ const styles = StyleSheet.create({
             backgroundColor: '#FAF9F6',
             width: 200
         }
+    },
+    Profile:{
+        container: {
+            flex: 1,
+            alignItems: "center",
+        },
+        image: {
+            width: 150,
+            height: 150,
+            borderRadius: 100,
+            marginTop: 30
+        }
     }
 })
 
