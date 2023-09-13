@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     forms: {
         scrollContainer: {
             flexGrow: 1,
-            justifyContent: 'center',
+            justifyContent:'center'
         },
         formContainer: {
             flex: 1,
