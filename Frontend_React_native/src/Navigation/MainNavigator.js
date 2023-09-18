@@ -67,7 +67,13 @@ function MainNavigator() {
 
 function TabNavigator() {
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{
+            headerShown: false,
+            tabBarStyle: { backgroundColor: '#4D5559' }
+        }} tabBarOptions={{
+            activeTintColor: 'white',
+            inactiveTintColor: 'gray'
+        }}>
             <Tab.Screen name='Home' component={Home} options={{
                 tabBarIcon: () => (
                     <Image source={require('../images/homeScreenIcon.png')} style={{

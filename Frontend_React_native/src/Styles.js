@@ -3,69 +3,6 @@ import { Dimensions } from "react-native";
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-    UserMain: {
-        flex: 1,
-        flexDirection: 'row',
-        flexDirection: 'row-reverse',
-        borderWidth: 2,
-        borderRadius: 20,
-        backgroundColor: 'white',
-        margin: 20
-    },
-    wrapper: {
-        flex: 1,
-        margin: 10,
-        alignItems: 'flex-start',
-        padding: 15
-    },
-    image: {
-        height: 75,
-        width: 75,
-        borderRadius: 80,
-        margin: 10
-    },
-    text: {
-        fontSize: 17,
-        color: 'black'
-    },
-    modalContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    modalContent: {
-        backgroundColor: "white",
-        padding: 20,
-        borderRadius: 30,
-        elevation: 5
-    },
-    modalText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginBottom: 10,
-        color: 'black'
-    },
-    modalImage: {
-        height: 100,
-        width: 100,
-        alignContent: 'center',
-        marginBottom: 20
-    },
-    modalCloseButton: {
-        alignSelf: "flex-end",
-        marginTop: 10,
-        paddingVertical: 5
-    },
-    modalCloseButtonText: {
-        color: "blue",
-        fontSize: 16,
-        fontWeight: "bold"
-    },
-    loaderContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 10
-    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -93,16 +30,17 @@ const styles = StyleSheet.create({
     forms: {
         scrollContainer: {
             flexGrow: 1,
-            justifyContent:'center'
+            justifyContent: 'center'
         },
         formContainer: {
             flex: 1,
             padding: 20,
+            backgroundColor: '#353B3D'
         },
         element: {
             borderRadius: 5,
             padding: 10,
-            backgroundColor: 'white',
+            backgroundColor: '#4D5559',
             elevation: 10,
             shadowColor: 'black',
             alignItems: 'center',
@@ -111,7 +49,7 @@ const styles = StyleSheet.create({
         },
         elementText: {
             margin: 5,
-            color: 'black',
+            color: 'white',
         },
         elementButton: {
             alignItems: 'center',
@@ -119,14 +57,15 @@ const styles = StyleSheet.create({
             borderRadius: 50,
             elevation: 10,
             shadowColor: 'black',
-            backgroundColor: '#FAF9F6',
+            backgroundColor: '#4D5559',
             width: 200
         }
     },
-    Profile:{
+    Profile: {
         container: {
             flex: 1,
             alignItems: "center",
+            backgroundColor: '#353B3D'
         },
         image: {
             width: 150,
