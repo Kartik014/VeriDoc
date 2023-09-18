@@ -10,13 +10,14 @@ import SignUp from '../Screens/SignUp';
 import LogIn from '../Screens/LogIn';
 import Forms from '../Screens/forms';
 import MyProfile from '../Screens/MyProfile';
+import DayDetails from '../Screens/DayDetails';
 
 const stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 let profileUrl = ""
 const defaultUrl = "https://firebasestorage.googleapis.com/v0/b/varsfit.appspot.com/o/images.jpeg?alt=media&token=745ae4a8-60f3-4728-aef1-b99467281ff7"
 
-const CustomTabBarIcon = ({ imageSource}) => (
+const CustomTabBarIcon = ({ imageSource }) => (
     <Image
         source={{ uri: imageSource || defaultUrl }}
         style={{
@@ -58,6 +59,7 @@ function MainNavigator() {
                 <stack.Screen name="LogIn" component={LogIn} />
                 <stack.Screen name="SignUp" component={SignUp} />
                 <stack.Screen name="Forms" component={Forms} />
+                <stack.Screen name="DayDetails" component={DayDetails} />
             </stack.Navigator>
         </NavigationContainer>
     )
@@ -72,7 +74,7 @@ function TabNavigator() {
                         width: 25,
                         height: 25,
                         borderRadius: 20
-                    }}/>
+                    }} />
                 )
             }}
             />
