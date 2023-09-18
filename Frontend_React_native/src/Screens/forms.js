@@ -24,10 +24,10 @@ const Forms = ({ navigation }) => {
             const exercisesData = exerciseInput.map((exercise, index) => ({
                 exercise: exercise,
                 reps: repsInput[index] || ''
-              })).reduce((acc, item, index) => {
+            })).reduce((acc, item, index) => {
                 acc[`ex${index + 1}`] = item;
                 return acc;
-              }, {});
+            }, {});
 
             const nestedMap = {
                 [currentUser.uid]: {
@@ -38,7 +38,7 @@ const Forms = ({ navigation }) => {
                             Diet: diet
                         }
                     },
-                    image:"https://firebasestorage.googleapis.com/v0/b/varsfit.appspot.com/o/images.jpeg?alt=media&token=745ae4a8-60f3-4728-aef1-b99467281ff7"
+                    image: "https://firebasestorage.googleapis.com/v0/b/varsfit.appspot.com/o/images.jpeg?alt=media&token=745ae4a8-60f3-4728-aef1-b99467281ff7"
                 }
             }
 
@@ -79,6 +79,7 @@ const Forms = ({ navigation }) => {
                         style={[styles.forms.elementText, { flex: 1 }]}
                         value={repsInput[i] || ''}
                         onChangeText={value => handleRepChange(value, i)}
+                        keyboardType='numeric'
                     />
                 </View>
             )
@@ -87,13 +88,13 @@ const Forms = ({ navigation }) => {
     }
 
     const handleChange = (value, index) => {
-        const updateInput = [ ...exerciseInput ]
+        const updateInput = [...exerciseInput]
         updateInput[index] = value
         setExerciseInput(updateInput)
     }
 
     const handleRepChange = (value, index) => {
-        const updateInput = [ ...repsInput ]
+        const updateInput = [...repsInput]
         updateInput[index] = value
         setRepsInput(updateInput)
     }
