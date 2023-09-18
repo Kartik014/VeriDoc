@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         formContainer: {
             flex: 1,
             padding: 20,
-            backgroundColor: '#353B3D'
+            backgroundColor: '#3F4447'
         },
         element: {
             borderRadius: 5,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         container: {
             flex: 1,
             alignItems: "center",
-            backgroundColor: '#353B3D'
+            backgroundColor: '#3F4447'
         },
         image: {
             width: 150,
@@ -73,6 +73,13 @@ const styles = StyleSheet.create({
             borderRadius: 100,
             marginTop: 30
         }
+    },
+    Header:{
+        headerTitle: {
+            fontFamily: 'Fuggles-Regular',
+            fontSize: 50,
+            color: 'white',
+          },
     }
 })
 

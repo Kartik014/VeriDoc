@@ -11,6 +11,7 @@ import LogIn from '../Screens/LogIn';
 import Forms from '../Screens/forms';
 import MyProfile from '../Screens/MyProfile';
 import DayDetails from '../Screens/DayDetails';
+import styles from '../Styles';
 
 const stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -68,7 +69,6 @@ function MainNavigator() {
 function TabNavigator() {
     return (
         <Tab.Navigator screenOptions={{
-            headerShown: false,
             tabBarStyle: { backgroundColor: '#4D5559' }
         }} tabBarOptions={{
             activeTintColor: 'white',
@@ -81,13 +81,21 @@ function TabNavigator() {
                         height: 25,
                         borderRadius: 20
                     }} />
-                )
+                ),
+                headerStyle: {
+                    backgroundColor: '#3F4447',
+                },
+                headerTitleStyle: styles.Header.headerTitle
             }}
             />
-            <Tab.Screen name='MyProfile' component={MyProfile} options={{
+            <Tab.Screen name='Profile' component={MyProfile} options={{
                 tabBarIcon: ({ focused }) => (
                     <CustomTabBarIcon imageSource={profileUrl} focused={focused} />
                 ),
+                headerStyle: {
+                    backgroundColor: '#3F4447'
+                },
+                headerTitleStyle: styles.Header.headerTitle
             }}
             />
         </Tab.Navigator>
