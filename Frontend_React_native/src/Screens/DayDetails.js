@@ -48,34 +48,36 @@ const DayDetails = ({ route }) => {
     }
 
     return (
-        <ScrollView style={styles.forms.ScrollContainer}>
-            <View style={styles.forms.formContainer}>
-                <View style={{ alignItems: 'center' }}>
-                    <View style={styles.forms.element}>
-                        <Text style={[styles.forms.elementText, { fontWeight: 'bold' }, { fontSize: 45 }]}>{selectedDay}</Text>
+        <View style={[{ backgroundColor: '#3F4447' }, { flex: 1 }]}>
+            <ScrollView style={styles.forms.ScrollContainer}>
+                <View style={styles.forms.formContainer}>
+                    <View style={{ alignItems: 'center' }}>
+                        <View style={styles.forms.element}>
+                            <Text style={[styles.forms.elementText, { fontWeight: 'bold' }, { fontSize: 45 }]}>{selectedDay}</Text>
+                        </View>
+                    </View>
+                    <View>
+                        {Object.keys(exercises).map((exerciseKey) => (
+                            <View key={exerciseKey}>
+                                <View style={styles.forms.element}>
+                                    <Text style={styles.forms.elementText}>Exercise: {exercises[exerciseKey].exercise}</Text>
+                                </View>
+                                <View style={styles.forms.element}>
+                                    <Text style={styles.forms.elementText}>Reps: {exercises[exerciseKey].reps}</Text>
+                                </View>
+                            </View>
+                        ))}
+                    </View>
+                    <View>
+                        {displayData("Sets", sets)}
+                        {displayData("Snacks", snacks)}
+                        {displayData("Breakfast", breakfast)}
+                        {displayData("Lunch", lunch)}
+                        {displayData("Dinner", dinner)}
                     </View>
                 </View>
-                <View>
-                    {Object.keys(exercises).map((exerciseKey) => (
-                        <View key={exerciseKey}>
-                            <View style={styles.forms.element}>
-                                <Text style={styles.forms.elementText}>Exercise: {exercises[exerciseKey].exercise}</Text>
-                            </View>
-                            <View style={styles.forms.element}>
-                                <Text style={styles.forms.elementText}>Reps: {exercises[exerciseKey].reps}</Text>
-                            </View>
-                        </View>
-                    ))}
-                </View>
-                <View>
-                    {displayData("Sets", sets)}
-                    {displayData("Snacks", snacks)}
-                    {displayData("Breakfast", breakfast)}
-                    {displayData("Lunch", lunch)}
-                    {displayData("Dinner", dinner)}
-                </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 

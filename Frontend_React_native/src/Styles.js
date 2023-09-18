@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         element: {
             borderRadius: 5,
             padding: 10,
-            backgroundColor: '#4D5559',
+            backgroundColor: '#6C777D',
             elevation: 10,
             shadowColor: 'black',
             alignItems: 'center',
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
             borderRadius: 50,
             elevation: 10,
             shadowColor: 'black',
-            backgroundColor: '#4D5559',
+            backgroundColor: '#6C777D',
             width: 200
         }
     },
@@ -74,12 +74,15 @@ const styles = StyleSheet.create({
             marginTop: 30
         }
     },
-    Header:{
+    Header: {
         headerTitle: {
-            fontFamily: 'Fuggles-Regular',
-            fontSize: 50,
+            fontFamily: 'DancingScript-VariableFont_wght',
+            fontSize: 40,
             color: 'white',
-          },
+        },
+        headerBackGround: {
+            backgroundColor: '#6C777D'
+        }
     }
 })
 

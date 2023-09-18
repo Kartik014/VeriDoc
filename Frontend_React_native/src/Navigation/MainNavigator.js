@@ -82,9 +82,7 @@ function TabNavigator() {
                         borderRadius: 20
                     }} />
                 ),
-                headerStyle: {
-                    backgroundColor: '#3F4447',
-                },
+                headerStyle: styles.Header.headerBackGround,
                 headerTitleStyle: styles.Header.headerTitle
             }}
             />
@@ -92,9 +90,7 @@ function TabNavigator() {
                 tabBarIcon: ({ focused }) => (
                     <CustomTabBarIcon imageSource={profileUrl} focused={focused} />
                 ),
-                headerStyle: {
-                    backgroundColor: '#3F4447'
-                },
+                headerStyle: styles.Header.headerBackGround,
                 headerTitleStyle: styles.Header.headerTitle
             }}
             />
