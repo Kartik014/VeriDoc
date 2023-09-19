@@ -72,6 +72,18 @@ const styles = StyleSheet.create({
             height: 150,
             borderRadius: 100,
             marginTop: 30
+        },
+        scrollContainer: {
+            flexGrow: 1,
+            justifyContent: 'center'
+        },
+        elementText: {
+            margin: 5,
+            color: 'white',
+        },
+        wrapper: {
+            flex: 1,
+            flexDirection: 'row'
         }
     },
     Header: {
