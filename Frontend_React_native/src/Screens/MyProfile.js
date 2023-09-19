@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableHighlight, View, Image, StyleSheet } from "react-native";
+import { TouchableHighlight, View, Image, ScrollView, Text } from "react-native";
 import * as ImagePicker from "react-native-image-picker";
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
@@ -11,6 +11,8 @@ const MyProfile = () => {
     const currentUser = auth().currentUser
     const defaultUrl = "https://firebasestorage.googleapis.com/v0/b/varsfit.appspot.com/o/images.jpeg?alt=media&token=745ae4a8-60f3-4728-aef1-b99467281ff7"
     const [imageUrl, setImageUrl] = useState(defaultUrl)
+    const [postsNo, setPostsNo] = useState(0)
+    const [followersNo, setFollowersNo] = useState(0)
 
     useEffect(() => {
         const fetchProfileImageUrl = async () => {
@@ -86,15 +88,29 @@ const MyProfile = () => {
     }
 
     return (
-        <View style={styles.Profile.container}>
-            <TouchableHighlight onPress={selectImage}>
-                <Image
-                    source={{ uri: imageUrl }}
-                    style={styles.Profile.image}
-                    resizeMode="contain"
-                />
-            </TouchableHighlight>
-        </View>
+        <View style={[{ backgroundColor: '#3F4447' }, { flex: 1 }]}>
+            <ScrollView style={styles.Profile.ScrollContainer}>
+                <View style={styles.Profile.container}>
+                    <TouchableHighlight onPress={selectImage}>
+                        <Image
+                            source={{ uri: imageUrl }}
+                            style={styles.Profile.image}
+                            resizeMode="contain"
+                        />
+                    </TouchableHighlight>
+                </View>
+                <View style={[styles.Profile.wrapper, { margin: 20 }]}>
+                    <View style={styles.Profile.wrapper}>
+                        <Text style={[styles.Profile.elementText, { fontSize: 20 }]}>POSTS:</Text>
+                        <Text style={[styles.Profile.elementText, { fontSize: 20 }]}>{postsNo}</Text>
+                    </View>
+                    <View style={styles.Profile.wrapper}>
+                        <Text style={[styles.Profile.elementText, { fontSize: 20 }]}>FOLLOWERS:</Text>
+                        <Text style={[styles.Profile.elementText, { fontSize: 20 }]}>{followersNo}</Text>
+                    </View>
+                </View>
+            </ScrollView >
+        </View >
     )
 }
 
