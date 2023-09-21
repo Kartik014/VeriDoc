@@ -4,6 +4,7 @@ import * as ImagePicker from "react-native-image-picker";
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
+import axios from 'axios';
 import styles from "../Styles";
 
 const MyProfile = () => {
@@ -60,6 +61,7 @@ const MyProfile = () => {
                     await storageRef.putFile(selectedImage.uri);
                     const downloadURL = await storageRef.getDownloadURL();
 
+                    await uploadImageToIpfs(selectedImage.uri)
                     setImageUrl(downloadURL);
                     await saveDataToFirestore(downloadURL);
 
@@ -70,8 +72,56 @@ const MyProfile = () => {
         });
     }
 
+    const uploadImageToIpfs = async (Imageuri) => {
+
+        const timeStamp = Date.now()
+        const randomString = Math.random().toString(36).substring(7)
+
+        const fileName = `image_${timeStamp}_${randomString}.jpg`
+        try {
+            const formData = new FormData()
+            formData.append('file', {
+                uri: Imageuri,
+                type: "image/jpg",
+                name: fileName
+            })
+
+            const response = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'pinata_api_key': 'a505e3a50bf7a498bef1',
+                    'pinata_secret_api_key': '4c77af20022279f7b8a89f9601a88380e09a484a014f6636b88728813647defc'
+                }
+            })
+
+            if (response.data && response.data.IpfsHash) {
+                const ipfsImageUrl = `https://white-uniform-mastodon-684.mypinata.cloud/ipfs/${response.data.IpfsHash}`
+                try {
+                    const collectionRef = firestore().collection('training_program').doc('training_programs')
+
+                    const nestedMap = {
+                        [currentUser.uid]: {
+                            IPFSimageUrl: ipfsImageUrl,
+                            CID: response.data.IpfsHash
+                        }
+                    }
+
+                    await collectionRef.set(nestedMap, { merge: true })
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+
+        } catch (err) {
+            console.error(err)
+            if (err.response) {
+                console.error('Response Data:', err.response.data);
+                console.error('Response Status:', err.response.status);
+            }
+        }
+    }
+
     const saveDataToFirestore = async (downloadURL) => {
-        console.log("URL:", downloadURL)
         try {
             const collectionRef = firestore().collection('training_program').doc('training_programs')
 
